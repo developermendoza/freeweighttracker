@@ -1,0 +1,35 @@
+{
+  "name": "freeweighttracker",
+  "version": "1.0.0",
+  "description": "tracks weight progress of user",
+  "main": "server.js",
+  "scripts": {
+    "start": "nose server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developermendoza/freeweighttracker.git"
+  },
+  "author": "Jose Mendoza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developermendoza/freeweighttracker/issues"
+  },
+  "homepage": "https://github.com/developermendoza/freeweighttracker#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.11",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
