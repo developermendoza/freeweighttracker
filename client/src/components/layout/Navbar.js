@@ -8,7 +8,10 @@ const Navbar = () => {
       <NavigationBar.Brand href="/">{' '}
         Free Weight Tracker
       </NavigationBar.Brand>
-      <Nav.Link href="/login">Login</Nav.Link>
+      <div style={{display: "flex", alignItems:"center"}}>
+      <Nav.Link href="/login">Login</Nav.Link><span style={{color:"white"}}>|</span><Nav.Link href="/Register">Sign up</Nav.Link>
+      </div>
+      
     </NavigationBar>
   )
 }
