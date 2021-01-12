@@ -1,12 +1,22 @@
 import React from "react";
-import { Jumbotron } from "react-bootstrap";
-
+import { Jumbotron, Container, Row, Col } from "react-bootstrap";
+import UserInfo from "./UserInfo";
+import AddWeight from "./AddWeight";
+import WeightList from "./WeightList";
+import WeightProgress from "./WeightProgress";
 
 const Dashboard = () => {
   return (
-    <Jumbotron>
-      Dashboard 
-    </Jumbotron>
+    <Container>
+      <Row style={{marginTop:"150px", justifyContent: "space-between"}}>
+        <Col><UserInfo /></Col>
+        <Col><AddWeight /></Col>
+      </Row>
+      <Row>
+        <Col><WeightList /></Col>
+        <Col><WeightProgress /></Col>
+      </Row>
+    </Container>
   )
 }
 
