@@ -1,6 +1,11 @@
 import React, {Component} from "react";
 import { Jumbotron, Container, Form, Row, Button } from "react-bootstrap";
-class Login extends Component{
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
+
+class Register extends Component{
 
   constructor(){
     super();
@@ -10,6 +15,14 @@ class Login extends Component{
       password: "",
       password2: "",
       errors: {}
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+      this.setState({
+        errors:nextProps.errors
+      })
     }
   }
 
@@ -28,7 +41,8 @@ class Login extends Component{
       password: this.state.password,
       password2: this.state.password2
     }
-    console.log(newUser)
+    console.log(newUser);
+    this.props.registerUser(newUser, this.props.history)
   }
   render () {
     const { errors } = this.state
@@ -43,11 +57,14 @@ class Login extends Component{
             value={this.state.name}
             error={errors.name}
             type="text" 
+            className={classnames("", {
+              invalid: errors.name
+            })}
             placeholder="Enter your name" 
             />
-          <Form.Text className="text-muted">
-            Required
-          </Form.Text>
+
+          {errors.name ? <Form.Text style={{color:"red"}}>{errors.name}</Form.Text> : <Form.Text className="text-muted">Required
+          </Form.Text> }
         </Form.Group>
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
@@ -56,12 +73,14 @@ class Login extends Component{
             value={this.state.email}
             error={errors.email}
             type="email" 
+            className={classnames("", {
+              invalid: errors.email
+            })}
             placeholder="Enter email" 
 
             />
-          <Form.Text className="text-muted">
-            Required
-          </Form.Text>
+          {errors.email ? <Form.Text style={{color:"red"}}>{errors.email}</Form.Text> : <Form.Text className="text-muted">Required
+          </Form.Text> }
         </Form.Group>
       
         <Form.Group controlId="password">
@@ -73,10 +92,12 @@ class Login extends Component{
             type="password" 
             placeholder="Password" 
             autoComplete="new password"
+            className={classnames("", {
+              invalid: errors.password
+            })}
             />
-          <Form.Text className="text-muted">
-            Required
-          </Form.Text>
+          {errors.password ? <Form.Text style={{color:"red"}}>{errors.password}</Form.Text> : <Form.Text className="text-muted">Required
+          </Form.Text> }
         </Form.Group>
         <Form.Group controlId="password2">
           <Form.Label>Confirm Password</Form.Label>
@@ -87,10 +108,12 @@ class Login extends Component{
             type="password" 
             placeholder="Retype Password" 
             autoComplete="new password"
+            className={classnames("", {
+              invalid: errors.password2
+            })}
             />
-          <Form.Text className="text-muted">
-            Required
-          </Form.Text>
+          {errors.password2 ? <Form.Text style={{color:"red"}}>{errors.password2}</Form.Text> : <Form.Text className="text-muted">Required
+          </Form.Text> }
         </Form.Group>
         <p>Already a member? <a href="/login">Login here</a></p>
         <Button variant="primary" type="submit">
@@ -104,4 +127,18 @@ class Login extends Component{
 
 }
 
-export default Login;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register);

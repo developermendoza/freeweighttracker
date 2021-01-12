@@ -10,17 +10,22 @@ import {
   Route,
 } from "react-router-dom";
 
+import { Provider } from  "react-redux";
+import store from "./store";
+
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Route exact path="/" component={Landing}/>
-        <Route exact path="/Login" component={Login}/>
-        <Route exact path="/Register" component={Register}/>
-        <Route exact path="/Dashboard" component={Dashboard}/>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" component={Landing}/>
+          <Route exact path="/Login" component={Login}/>
+          <Route exact path="/Register" component={Register}/>
+          <Route exact path="/Dashboard" component={Dashboard}/>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
