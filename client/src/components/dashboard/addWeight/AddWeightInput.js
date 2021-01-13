@@ -47,7 +47,6 @@ class AddWeightInput extends Component{
     this.props.addWeight(newWeight);
   }
   render() {
-    // console.log("this.props", this.props)
     return (
       <Form onSubmit={this.handleSubmit}>
     <Form.Row>
