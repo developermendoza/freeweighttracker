@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import authReducers from "./authReducers";
 import errorReducers from "./errorReducers";
+import weightReducer from "./weightReducer";
 
 export default combineReducers({
   auth: authReducers,
-  errors: errorReducers
+  errors: errorReducers,
+  weight: weightReducer
 })

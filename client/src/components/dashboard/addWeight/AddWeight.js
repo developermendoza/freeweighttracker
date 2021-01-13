@@ -3,11 +3,12 @@ import AddWeightDatePicker from "./AddWeightDatePicker"
 import { Container, Row, Col } from "react-bootstrap";
 
 const AddWeight = () => {
+ 
   return (
     <Container>
       <Row>
         <Col>
-          <AddWeightInput />
+          <AddWeightInput/>
         </Col>
         <Col>
           <AddWeightDatePicker />

@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 const UserInfo = ({auth}) => {
-  console.log("auth: ", auth)
   return (
     <div>
       <h2>Welcome <b style={{textTransform:"capitalize"}}>{ auth.user.name.split(" ")[0] }!</b></h2>
