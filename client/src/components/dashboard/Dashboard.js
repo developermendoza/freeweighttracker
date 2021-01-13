@@ -1,8 +1,8 @@
 import React from "react";
 import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import UserInfo from "./UserInfo";
-import AddWeight from "./AddWeight";
-import WeightList from "./WeightList";
+import AddWeight from "./addWeight/AddWeight";
+import WeightList from "./deleteWeights/WeightList";
 import WeightProgress from "./WeightProgress";
 
 const Dashboard = () => {
