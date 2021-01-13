@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Spinner, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
-import { addWeight } from "../../../actions/weightActions";
+import { addWeight, fetchingData } from "../../../actions/weightActions";
 
 
 
@@ -12,14 +12,30 @@ class AddWeightInput extends Component{
     this.state = {
       weight: "",
       userId: "",
-      errors: {}
+      errors: {},
+      loading: false,
+      submitted: false
     }
   }
 
   componentDidUpdate(prevProps){
     if(prevProps.errors !== this.props.errors){
+      this.props.fetchingData()
       this.setState({
-        errors: this.props.errors
+        errors: this.props.errors,
+        loading: this.props.loading,
+      })
+    }
+
+    if(prevProps.loading !== this.props.loading){
+      this.setState({
+        loading: this.props.loading
+      })
+    }
+
+    if(prevProps.weight !== this.props.weight){
+      this.setState({
+        submitted: !!this.props.weight.weight
       })
     }
   }
@@ -43,10 +59,18 @@ class AddWeightInput extends Component{
         weight: this.state.weight,
         date: new Date()
       }
-
+      this.props.fetchingData()
     this.props.addWeight(newWeight);
   }
   render() {
+
+    // this will close the success alert automatically 
+    if(this.state.submitted){
+      setTimeout(
+        () => this.setState({submitted:false}), 
+        3000
+      );
+    }
     return (
       <Form onSubmit={this.handleSubmit}>
     <Form.Row>
@@ -61,8 +85,25 @@ class AddWeightInput extends Component{
       </Col>
     </Form.Row>
     <Form.Row>
-      <Button type="submit">ADD WEIGHT</Button>
+      <Button type="submit" disabled={this.state.loading}> {this.state.loading ?<> <Spinner
+      as="span"
+      animation="grow"
+      size="sm"
+      role="status"
+      aria-hidden="true"
+    /> Loading...</>
+     : "ADD WEIGHT"}</Button>
     </Form.Row>
+    {this.state.submitted && 
+      <Form.Row>
+      <Alert variant="success" onClose={ () => this.setState({submitted: false}) }  dismissible>
+        <p>
+          Weight Submitted
+        </p>
+      </Alert>
+    </Form.Row> 
+    }
+
   </Form>
     )
   }
@@ -72,8 +113,9 @@ class AddWeightInput extends Component{
 const mapStateToProps = state => ({
   weight: state.weight,
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  loading: state.loading
 })
 
 export default connect(mapStateToProps,
-  { addWeight })(AddWeightInput);
+  { addWeight, fetchingData })(AddWeightInput);

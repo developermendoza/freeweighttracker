@@ -1,17 +1,18 @@
 import {
-  SET_CURRENT_WEIGHT,
-  CLEAR_WEIGHT_DATA
+  LOADING,
+  STOP_LOADING
 } from "../actions/types";
 
-const initialState = {}
+const initialState = {
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function(state=initialState, action){
   switch(action.type){
-    case SET_CURRENT_WEIGHT:
-      return(action.payload)
-      case CLEAR_WEIGHT_DATA:
-        return{}
+    case LOADING:
+      return true
+      case STOP_LOADING:
+        return false
     default:
       return state;
   }
