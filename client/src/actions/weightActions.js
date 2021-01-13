@@ -14,10 +14,12 @@ export const addWeight = (weight) => dispatch => {
   axios.post("/api/weights/dashboard", weight)
   .then(res => {
    
-    dispatch({
+    dispatch(
+    {
       type: SET_CURRENT_WEIGHT,
       payload: res.data
     });
+ 
     dispatch({
       type: CLEAR_ERRORS,
     })
@@ -43,7 +45,7 @@ export const addWeight = (weight) => dispatch => {
   });
 }
 
-export const fetchingData = () => dispatch => {
+export const loadingData = () => dispatch => {
   dispatch({
     type: LOADING
   })

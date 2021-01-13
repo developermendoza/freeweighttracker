@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Form, Col, Button, Spinner, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
-import { addWeight, fetchingData } from "../../../actions/weightActions";
+import { addWeight, loadingData } from "../../../actions/weightActions";
 
 
 
@@ -20,7 +20,6 @@ class AddWeightInput extends Component{
 
   componentDidUpdate(prevProps){
     if(prevProps.errors !== this.props.errors){
-      this.props.fetchingData()
       this.setState({
         errors: this.props.errors,
         loading: this.props.loading,
@@ -57,13 +56,12 @@ class AddWeightInput extends Component{
       const newWeight = {
         userId: this.state.userId,
         weight: this.state.weight,
-        date: new Date()
+        date: this.props.date
       }
-      this.props.fetchingData()
+      this.props.loadingData()
     this.props.addWeight(newWeight);
   }
   render() {
-
     // this will close the success alert automatically 
     if(this.state.submitted){
       setTimeout(
@@ -118,4 +116,4 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps,
-  { addWeight, fetchingData })(AddWeightInput);
+  { addWeight, loadingData })(AddWeightInput);
