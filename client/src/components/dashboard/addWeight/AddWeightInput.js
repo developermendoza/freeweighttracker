@@ -112,7 +112,8 @@ const mapStateToProps = state => ({
   weight: state.weight,
   auth: state.auth,
   errors: state.errors,
-  loading: state.loading
+  loading: state.loading,
+  user_measures: state.user_measures
 })
 
 export default connect(mapStateToProps,

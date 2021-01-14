@@ -7,15 +7,32 @@ import {
   CLEAR_ERRORS,
   STOP_LOADING,
   CLEAR_WEIGHT_DATA,
+  GET_WEIGHTS
 } from "./types";
 
-// Register user
+export const getWeights = (id) => dispatch => {
+  axios.get("/api/weights/get-weights?id="+id)
+  .then(res => {
+    dispatch({
+      type: GET_WEIGHTS,
+      payload: res.data
+    })
+  }
+  
+  ).catch(err => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  })
+}
+
+
 export const addWeight = (weight) => dispatch => {
-  axios.post("/api/weights/dashboard", weight)
+  axios.post("/api/weights/add-weight", weight)
   .then(res => {
    
-    dispatch(
-    {
+    dispatch({
       type: SET_CURRENT_WEIGHT,
       payload: res.data
     });
@@ -44,6 +61,7 @@ export const addWeight = (weight) => dispatch => {
     });
   });
 }
+
 
 export const loadingData = () => dispatch => {
   dispatch({

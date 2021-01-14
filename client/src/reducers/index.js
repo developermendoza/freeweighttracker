@@ -8,5 +8,6 @@ export default combineReducers({
   auth: authReducers,
   errors: errorReducers,
   weight: weightReducer,
-  loading: loadingReducer
+  loading: loadingReducer,
+  user_measures: weightReducer
 })

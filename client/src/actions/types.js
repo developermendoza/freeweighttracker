@@ -7,3 +7,4 @@ export const STOP_LOADING = "STOP_LOADING ";
 export const WEIGHT_ERRORS= "WEIGHT_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLEAR_WEIGHT_DATA = "CLEAR_WEIGHT_DATA";
+export const GET_WEIGHTS = "GET_WEIGHTS";
