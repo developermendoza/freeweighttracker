@@ -18,12 +18,12 @@ const Dashboard = () => {
   return (
     <Container>
       <Row style={{marginTop:"150px", justifyContent: "space-between"}}>
-        <Col><UserInfo /></Col>
-        <Col><AddWeight/></Col>
+        <Col className="dashboard_section"><UserInfo /></Col>
+        <Col className="dashboard_section"><AddWeight/></Col>
       </Row>
       <Row>
-        <Col><WeightList /></Col>
-        <Col><WeightProgress /></Col>
+        <Col className="dashboard_section"><WeightList /></Col>
+        <Col className="dashboard_section"><WeightProgress /></Col>
       </Row>
     </Container>
   )

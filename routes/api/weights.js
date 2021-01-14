@@ -7,7 +7,8 @@ const Weight = require("../../models/Weight");
 
 // @route POST api/weight
 // @access private
-router.post("/dashboard", (req, res) => {
+// router.post("/dashboard", (req, res) => {
+  router.post("/add-weight", (req, res) => {
 
   // form input validation
   const { errors, isValid } = validateWeightInput(req.body)
@@ -23,9 +24,20 @@ const newWeight = new Weight({
   measure_date: req.body.date,
 });
 
+// console.log("newWeight: ", newWeight)
 
 newWeight.save().then(data => res.json(data)).catch(err => console.log(err));
 
-}); 
+});
+
+router.get("/get-weights", (req, res) => {
+  Weight.find({user_id: req.query.id},{measure_date:1, weight:1, _id:1}).sort({measure_date: -1}).then((data) => res.json(data)).catch(err => console.log(err))
+})
+
+router.delete("/delete-weight", (req, res) => {
+  Weight.deleteOne({_id: req.body.id}).
+  then( data => res.json(data)).catch(err =>console.log(err))
+ 
+})
 
 module.exports = router

@@ -5,6 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #243241!important;
+}
+
+.dashboard_section{
+  background-color: #34495E ;
+  margin: 10px;
+  height: 350px;
 }
 
 code {
