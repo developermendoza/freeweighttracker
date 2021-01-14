@@ -1,8 +1,9 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 const DelteAllWeights = () => {
   return (
-    <div>DelteAllWeights</div>
+    <Button variant="danger">DELETE ALL</Button>
   )
 }
 

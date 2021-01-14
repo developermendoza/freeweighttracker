@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { response } from "express";
 
 import {
   GET_ERRORS,
@@ -7,7 +8,8 @@ import {
   CLEAR_ERRORS,
   STOP_LOADING,
   CLEAR_WEIGHT_DATA,
-  GET_WEIGHTS
+  GET_WEIGHTS,
+  DELETE_WEIGHT
 } from "./types";
 
 export const getWeights = (id) => dispatch => {
@@ -60,6 +62,22 @@ export const addWeight = (weight) => dispatch => {
       type: STOP_LOADING,
     });
   });
+}
+
+export const deleteWeight = (id) => dispatch => {
+console.log("deleteWeight: ", id)
+  axios.delete("/api/weights/delete-weight",{ data: { id } })
+  .then( res => {
+    dispatch({
+      type: DELETE_WEIGHT,
+      payload: id
+    });
+  }).catch( err => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  })
 }
 
 
