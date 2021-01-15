@@ -85,11 +85,18 @@ export const deleteWeight = (id) => dispatch => {
 }
 
 export const deleteAllWeights = (id) => dispatch => {
-  console.log(id)
-  dispatch({
-    type: DELETE_ALL_WEIGHTS,
-    payload: id
-  })
+  axios.delete("/api/weights/delete-all-weights", {data: { id }} )
+    .then( res => {
+      dispatch({
+        type: DELETE_ALL_WEIGHTS,
+        payload: id
+      })
+    }).catch( err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    })
 }
 
 
