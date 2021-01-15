@@ -10,17 +10,11 @@ class WeightProgress extends Component {
     // data: {},
     data: {
       labels: [],
-      datasets: [
-      {
-        label: "none",
-        backgroundColor: 'transparent',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: []
-      }
-    ]
+      datasets: []
     },
   }
+
+  
 
   componentDidUpdate(prevProps){
 
@@ -33,8 +27,17 @@ class WeightProgress extends Component {
       this.setState({
         data : {
           labels,
-          datasets:[{data:weights}],
-        }
+          datasets:[
+            {
+                data: weights,
+                label: "weight",
+                backgroundColor: 'transparent',
+                borderColor: 'lightblue',
+                borderWidth: 6,
+                color: "white"
+            }],
+        },
+        
       })
     }
   }
@@ -43,21 +46,52 @@ class WeightProgress extends Component {
     this.props.getWeights(this.props.auth.user.id)
   }
   render(){
-    console.log("this.props: ", this.props)
+
+    const styles = {
+      fontFamily: 'sans-serif',
+      textAlign: 'center',
+      color: "white"
+    };
     return (
-      <div>
+      <div style={styles}>
+      <h2>Weight Progress</h2>
         <Line
           data={this.state.data}
           options={{
             title:{
               display:true,
-              text:'Weight Progress',
+              text:'Weight (lbs)',
               fontSize:20,
+              position:'left',
+              fontColor: "white"
             },
             legend:{
               display:false,
               position:'right'
-            }
+            },
+            scales: {
+            xAxes: [{ 
+                gridLines: {
+                    display: false,
+                },
+                ticks: {
+                  fontColor: "#CCC", // this here
+                },
+            }],
+            yAxes: [{
+                display: true,
+                borderColor: "#CCC",
+                gridLines: {
+                    display: true,
+                    borderColor: "#CCC",
+                    color: "white"
+                },
+                ticks: {
+                  fontColor: "#CCC", // this here
+                  borderColor: "#CCC"
+                },
+            }],
+        }
           }}
         />
       </div>

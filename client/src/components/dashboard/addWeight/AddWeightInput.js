@@ -20,6 +20,7 @@ class AddWeightInput extends Component{
 
   componentDidUpdate(prevProps){
     if(prevProps.errors !== this.props.errors){
+
       this.setState({
         errors: this.props.errors,
         loading: this.props.loading,
@@ -31,10 +32,9 @@ class AddWeightInput extends Component{
         loading: this.props.loading
       })
     }
-
-    if(prevProps.weight !== this.props.weight){
+    if(prevProps.user_measures.newWeight !== this.props.user_measures.newWeight){
       this.setState({
-        submitted: !!this.props.weight.weight
+        submitted: !!this.props.user_measures.newWeight
       })
     }
   }
@@ -59,6 +59,7 @@ class AddWeightInput extends Component{
         date: this.props.date
       }
       this.props.loadingData()
+      console.log("loadingData called")
     this.props.addWeight(newWeight);
   }
   render() {
