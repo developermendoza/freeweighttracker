@@ -3,7 +3,9 @@ import { Button } from "react-bootstrap";
 
 const DelteAllWeights = () => {
   return (
-    <Button variant="danger">DELETE ALL</Button>
+    <div className="button-wrapper">
+    <Button className="button" variant="danger">DELETE ALL</Button>
+    </div>
   )
 }
 

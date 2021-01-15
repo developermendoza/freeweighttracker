@@ -3,6 +3,7 @@ import {Line} from 'react-chartjs-2';
 import { connect } from "react-redux";
 import { getWeights } from  "../../actions/weightActions";
 import moment from "moment";
+import { Spinner } from "react-bootstrap";
 
 class WeightProgress extends Component {
 
@@ -12,6 +13,7 @@ class WeightProgress extends Component {
       labels: [],
       datasets: []
     },
+    loading: false
   }
 
   
@@ -40,6 +42,12 @@ class WeightProgress extends Component {
         
       })
     }
+
+    if(prevProps.loading !== this.props.loading){
+      this.setState({
+        loading: this.props.loading
+      })
+    }
   }
 
   componentDidMount(){
@@ -54,8 +62,10 @@ class WeightProgress extends Component {
     };
     return (
       <div style={styles}>
-      <h2>Weight Progress</h2>
-        <Line
+      <h2 style={{marginTop:"20px", marginBottom:"14px"}}>Weight Progress</h2>
+
+      {this.state.loading ? <div style={{textAlign:"center", position:"absolute", top:"50%", left:"0", right:"0"}}><Spinner animation="border" /></div> : 
+      this.props.user_measures.weightList.length > 0 ? <Line
           data={this.state.data}
           options={{
             title:{
@@ -93,7 +103,9 @@ class WeightProgress extends Component {
             }],
         }
           }}
-        />
+        /> : <div style={{textAlign:"center", position:"absolute", top:"50%", left:"0", right:"0"}}><p>No Data Available</p></div>  
+      }
+        
       </div>
     )
   }
@@ -102,7 +114,8 @@ class WeightProgress extends Component {
 
 const mapStateToProps = state => ({
   user_measures: state.user_measures,
-  auth: state.auth
+  auth: state.auth,
+  loading: state.loading
 })
 
 export default connect(mapStateToProps, { getWeights })(WeightProgress);

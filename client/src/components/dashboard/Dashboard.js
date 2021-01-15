@@ -23,7 +23,7 @@ const Dashboard = () => {
       </Row>
       <Row>
         <Col className="dashboard_section"><WeightList /></Col>
-        <Col className="dashboard_section"><WeightProgress /></Col>
+        <Col className="dashboard_section weight-progress"><WeightProgress /></Col>
       </Row>
     </Container>
   )

@@ -23,7 +23,6 @@ class AddWeightInput extends Component{
 
       this.setState({
         errors: this.props.errors,
-        loading: this.props.loading,
       })
     }
 
@@ -34,7 +33,7 @@ class AddWeightInput extends Component{
     }
     if(prevProps.user_measures.newWeight !== this.props.user_measures.newWeight){
       this.setState({
-        submitted: !!this.props.user_measures.newWeight
+        submitted: !!this.props.user_measures.newWeight,
       })
     }
   }
@@ -59,7 +58,6 @@ class AddWeightInput extends Component{
         date: this.props.date
       }
       this.props.loadingData()
-      console.log("loadingData called")
     this.props.addWeight(newWeight);
   }
   render() {
@@ -70,37 +68,49 @@ class AddWeightInput extends Component{
         3000
       );
     }
+
+    
     return (
       <Form onSubmit={this.handleSubmit}>
     <Form.Row>
       <Col>
-        <Form.Label>Add New Weight</Form.Label>
+        <Form.Label style={{fontsize: "1.8rem",
+    color: "white",
+    marginTop: "15px",
+    fontFamily: "Roboto,sans-serif"}}>ADD NEW WEIGHT</Form.Label>
         <Form.Control 
         onChange={this.handleChange}
         value={this.state.weight}
         id="weight"
         type="number" placeholder="Add Weight" />
-        <span>{this.state.errors.msg && this.state.errors.msg}</span>
       </Col>
     </Form.Row>
-    <Form.Row>
-      <Button type="submit" disabled={this.state.loading}> {this.state.loading ?<> <Spinner
+    <Form.Row style={{justifyContent:"center", marginTop:"20px"}}>
+    <div className="button-wrapper">
+      <Button className="button" type="submit" disabled={this.state.loading}> {this.state.loading ?<> <Spinner
       as="span"
       animation="grow"
       size="sm"
       role="status"
       aria-hidden="true"
     /> Loading...</>
-     : "ADD WEIGHT"}</Button>
+     : "ADD WEIGHT"}</Button></div>
     </Form.Row>
+    {this.state.errors.msg && this.state.errors.msg && <Form.Row>
+      <Alert style={{position: "absolute", bottom:"0", right:"0", left:"0"}} variant="danger" onClose={ () => this.setState({errors: {}})} dismissible>
+        <p>
+       { this.state.errors.msg }
+        </p>
+      </Alert>
+    </Form.Row> }
     {this.state.submitted && 
       <Form.Row>
-      <Alert variant="success" onClose={ () => this.setState({submitted: false}) }  dismissible>
+      <Alert style={{position: "absolute", bottom:"0", right:"0", left:"0"}} variant="success" onClose={ () => this.setState({submitted: false}) }  dismissible>
         <p>
           Weight Submitted
         </p>
       </Alert>
-    </Form.Row> 
+    </Form.Row>
     }
 
   </Form>

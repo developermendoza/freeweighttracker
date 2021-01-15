@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 
 const UserInfo = ({auth}) => {
   return (
-    <div>
-      <h2>Welcome <b style={{textTransform:"capitalize"}}>{ auth.user.name.split(" ")[0] }!</b></h2>
-      <h4>Email</h4>
-      <h4>{auth.user.email}</h4>
+    <div style={{marginTop:"30px", marginLeft:"20px", color:"white"}}>
+      <h2 style={{fontSize:"2.5rem"}}>Welcome <b style={{textTransform:"capitalize"}}>{ auth.user.name.split(" ")[0] }!</b></h2>
+      <h4 style={{color: "grey"}}>Email</h4>
+      <h4 style={{fontSize:"1.0rem"}}>{auth.user.email}</h4>
     </div>
   )
 }

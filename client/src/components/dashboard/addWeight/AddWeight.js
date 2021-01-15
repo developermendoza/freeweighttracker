@@ -22,7 +22,7 @@ class AddWeight extends Component{
         <Col>
           <AddWeightInput date={this.state.date}/>
         </Col>
-        <Col>
+        <Col style={{textAlign: "right", paddingRight: "0", marginRight: "0"}}>
           <AddWeightDatePicker handleDatePickerChange={this.handleDatePickerChange} date={this.state.date} />
         </Col>
       </Row>

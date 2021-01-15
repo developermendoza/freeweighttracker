@@ -13,20 +13,29 @@ import {
 
 export const getWeights = (id) => dispatch => {
   axios.get("/api/weights/get-weights?id="+id)
+  
   .then(res => {
     dispatch({
       type: GET_WEIGHTS,
       payload: res.data
-    })
+    });
+    dispatch({
+      type: STOP_LOADING,
+    });
   }
   
   ).catch(err => {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
-    })
+    });
+
+    dispatch({
+      type: STOP_LOADING,
+    });
   })
 }
+
 
 
 export const addWeight = (weight) => dispatch => {
