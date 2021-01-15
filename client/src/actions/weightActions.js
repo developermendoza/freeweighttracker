@@ -8,7 +8,8 @@ import {
   CLEAR_ERRORS,
   STOP_LOADING,
   GET_WEIGHTS,
-  DELETE_WEIGHT
+  DELETE_WEIGHT,
+  DELETE_ALL_WEIGHTS
 } from "./types";
 
 export const getWeights = (id) => dispatch => {
@@ -80,6 +81,14 @@ export const deleteWeight = (id) => dispatch => {
       type: GET_ERRORS,
       payload: err.response.data
     })
+  })
+}
+
+export const deleteAllWeights = (id) => dispatch => {
+  console.log(id)
+  dispatch({
+    type: DELETE_ALL_WEIGHTS,
+    payload: id
   })
 }
 

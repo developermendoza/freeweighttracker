@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import AllWeights from "./DeleteWeights";
-import DeleteAllWeights from "./DeleteWeightsButton";
-import { Container, Row, Col, ListGroup, ListGroupItem, Button, Spinner } from "react-bootstrap";
-import { getWeights, deleteWeight, loadingData } from  "../../../actions/weightActions";
+import DeleteWeightsButton from "./DeleteWeightsButton";
+import { Container, Row, Col, ListGroup, ListGroupItem, Button, Spinner, Modal } from "react-bootstrap";
+import { getWeights, deleteWeight, loadingData, deleteAllWeights } from  "../../../actions/weightActions";
 import { connect } from "react-redux";
 import moment from "moment";
 
@@ -10,7 +10,8 @@ class WeightList extends Component {
 
   state = {
     weights : [],
-    loading: false
+    loading: false,
+    show: false
   }
 
   handleWeightDelete = (id, e) => {
@@ -20,6 +21,22 @@ class WeightList extends Component {
   componentDidMount(){
     this.props.loadingData()
     this.props.getWeights(this.props.auth.user.id)
+  }
+
+  handleClose = (data) => {
+   if(data === "yes"){
+    this.props.deleteAllWeights(this.props.auth.user.id)
+    // console.log("you have picked yes")
+   }
+    this.setState({
+      show: false
+    })
+  }
+
+  handleShow = () => {
+    this.setState({
+      show: true
+    })
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -58,8 +75,22 @@ class WeightList extends Component {
             
             </ListGroup>
           </Col>
-          <Col sm={12} md={4}><DeleteAllWeights /></Col>
+          <Col sm={12} md={4}><DeleteWeightsButton handleShow={this.handleShow} /></Col>
         </Row>
+        <Modal show={this.state.show} onHide={this.handleClose.bind(this, "no")}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Weights</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete all weights?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleClose.bind(this, "no")}>
+            No
+          </Button>
+          <Button variant="primary" onClick={this.handleClose.bind(this, "yes")}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </Container>
     )
   }
@@ -72,4 +103,4 @@ const mapStateToProps = state => ({
   weight: state.weight,
   loading: state.loading
 })
-export default connect(mapStateToProps,{ getWeights, deleteWeight, loadingData })(WeightList);
+export default connect(mapStateToProps,{ getWeights, deleteWeight, loadingData, deleteAllWeights })(WeightList);

@@ -9,5 +9,5 @@ export default combineReducers({
   errors: errorReducers,
   weight: weightReducer,
   loading: loadingReducer,
-  user_measures: weightReducer
+  user_measures: weightReducer,
 })

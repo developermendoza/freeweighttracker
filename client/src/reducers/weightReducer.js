@@ -1,7 +1,8 @@
 import {
   SET_CURRENT_WEIGHT,
   GET_WEIGHTS,
-  DELETE_WEIGHT
+  DELETE_WEIGHT,
+  DELETE_ALL_WEIGHTS
 } from "../actions/types";
 
 const initialState = {
@@ -17,6 +18,10 @@ export default function(state=initialState, action){
       return {
         weightList : [action.payload, ...state.weightList],
         newWeight: action.payload
+      }
+    case DELETE_ALL_WEIGHTS: 
+      return {
+        weightList: []
       }
     case GET_WEIGHTS:
         return {

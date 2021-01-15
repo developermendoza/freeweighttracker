@@ -13,8 +13,8 @@ class AddWeightInput extends Component{
       weight: "",
       userId: "",
       errors: {},
+      submitted: false,
       loading: false,
-      submitted: false
     }
   }
 
@@ -57,9 +57,11 @@ class AddWeightInput extends Component{
         weight: this.state.weight,
         date: this.props.date
       }
+
       this.props.loadingData()
     this.props.addWeight(newWeight);
   }
+
   render() {
     // this will close the success alert automatically 
     if(this.state.submitted){
@@ -96,7 +98,7 @@ class AddWeightInput extends Component{
      : "ADD WEIGHT"}</Button></div>
     </Form.Row>
     {this.state.errors.msg && this.state.errors.msg && <Form.Row>
-      <Alert style={{position: "absolute", bottom:"0", right:"0", left:"0"}} variant="danger" onClose={ () => this.setState({errors: {}})} dismissible>
+      <Alert variant="danger" onClose={ () => this.setState({errors: {}})} dismissible>
         <p>
        { this.state.errors.msg }
         </p>
@@ -104,14 +106,14 @@ class AddWeightInput extends Component{
     </Form.Row> }
     {this.state.submitted && 
       <Form.Row>
-      <Alert style={{position: "absolute", bottom:"0", right:"0", left:"0"}} variant="success" onClose={ () => this.setState({submitted: false}) }  dismissible>
+      <Alert variant="success" onClose={ () => this.setState({submitted: false}) }  dismissible>
         <p>
           Weight Submitted
         </p>
       </Alert>
     </Form.Row>
     }
-
+    
   </Form>
     )
   }
@@ -122,8 +124,8 @@ const mapStateToProps = state => ({
   weight: state.weight,
   auth: state.auth,
   errors: state.errors,
-  loading: state.loading,
-  user_measures: state.user_measures
+  user_measures: state.user_measures,
+  loading: state.loading
 })
 
 export default connect(mapStateToProps,

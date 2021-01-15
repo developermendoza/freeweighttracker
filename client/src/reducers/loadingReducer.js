@@ -1,6 +1,6 @@
 import {
   LOADING,
-  STOP_LOADING
+  STOP_LOADING,
 } from "../actions/types";
 
 const initialState = {
