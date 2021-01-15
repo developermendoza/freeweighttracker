@@ -47,7 +47,7 @@ class WeightList extends Component {
       <Container>
         <Row>
         
-          <Col style={{minWidth:"330px"}}>
+          <Col sm={12} md={8}>
             <h2 style={{color:"white"}}>ALL WEIGHTS</h2>
             <ListGroup style={{height: "290px", overflowY:"auto"}} className="allweights-scrollbar">
             
@@ -58,7 +58,7 @@ class WeightList extends Component {
             
             </ListGroup>
           </Col>
-          <Col style={{margin:"auto", textAlign:"center"}}><DeleteAllWeights /></Col>
+          <Col sm={12} md={4}><DeleteAllWeights /></Col>
         </Row>
       </Container>
     )

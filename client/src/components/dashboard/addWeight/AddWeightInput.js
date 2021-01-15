@@ -76,7 +76,6 @@ class AddWeightInput extends Component{
       <Col>
         <Form.Label style={{fontsize: "1.8rem",
     color: "white",
-    marginTop: "15px",
     fontFamily: "Roboto,sans-serif"}}>ADD NEW WEIGHT</Form.Label>
         <Form.Control 
         onChange={this.handleChange}
@@ -85,7 +84,7 @@ class AddWeightInput extends Component{
         type="number" placeholder="Add Weight" />
       </Col>
     </Form.Row>
-    <Form.Row style={{justifyContent:"center", marginTop:"20px"}}>
+    <Form.Row style={{justifyContent:"center"}}>
     <div className="button-wrapper">
       <Button className="button" type="submit" disabled={this.state.loading}> {this.state.loading ?<> <Spinner
       as="span"

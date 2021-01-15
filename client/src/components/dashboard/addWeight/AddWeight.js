@@ -19,10 +19,10 @@ class AddWeight extends Component{
   return (
     <Container>
       <Row>
-        <Col>
+        <Col sm={12} md={6}>
           <AddWeightInput date={this.state.date}/>
         </Col>
-        <Col style={{textAlign: "right", paddingRight: "0", marginRight: "0"}}>
+        <Col sm={12} md={6}>
           <AddWeightDatePicker handleDatePickerChange={this.handleDatePickerChange} date={this.state.date} />
         </Col>
       </Row>

@@ -11,7 +11,12 @@ body {
 .dashboard_section{
   background-color: #34495E ;
   margin: 10px;
-  height: 350px;
+  /* height: 350px; */
+  height: 100%;
+  max-width: 540px!important;
+  flex: 0 0 100%!important;
+  padding: 20px;
+  color: white;
 }
 
 
