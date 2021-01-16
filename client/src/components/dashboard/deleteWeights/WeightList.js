@@ -11,7 +11,8 @@ class WeightList extends Component {
   state = {
     weights : [],
     loading: false,
-    show: false
+    show: false,
+    submitNum: 0
   }
 
   handleWeightDelete = (id, e) => {
@@ -26,7 +27,6 @@ class WeightList extends Component {
   handleClose = (data) => {
    if(data === "yes"){
     this.props.deleteAllWeights(this.props.auth.user.id)
-    // console.log("you have picked yes")
    }
     this.setState({
       show: false
@@ -40,9 +40,9 @@ class WeightList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    
-    if(prevProps.user_measures.weightList !== this.props.user_measures.weightList){
 
+    if(prevProps.user_measures.weightList !== this.props.user_measures.weightList){
+      
       this.setState({
         weights: this.props.user_measures.weightList,
       })
