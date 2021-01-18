@@ -31,7 +31,10 @@ class UserInfo extends Component{
   // gets the second to current date  user object
   const secondSubmitWeight = sortedWeights[1];
 
-  // compares the two weights of the two values and then we set that to weightProgress state
+  // debugger;
+
+  
+    // compares the two weights of the two values and then we set that to weightProgress state
   if(currentSubmitWeight.weight < secondSubmitWeight.weight){
     this.setState({
       weightProgress: `You have lost ${secondSubmitWeight.weight - currentSubmitWeight.weight} lbs since ${moment(secondSubmitWeight.measure_date).format("MMMM DD YYYY")}`
@@ -51,6 +54,8 @@ class UserInfo extends Component{
       weightProgress: ""
     })
   }
+
+  
 
 
   }
@@ -80,17 +85,24 @@ class UserInfo extends Component{
 
 
   userAnalytics = (weights) => {
-
-    // sort data by date from current to last weight submitted
-    const sortedWeights = weights.sort(function compare(a, b) {
-      var dateA = new Date(a.measure_date);
-      var dateB = new Date(b.measure_date);
-      return dateB - dateA;
-    });
-
+    // gets called to get weights that were submitted today
     this.getTodaySubmitTimes(weights);
-    this.getCurrentWeightProgress(sortedWeights);
-    this.getTotalWeightProgress(sortedWeights);
+    // checks to see if there are more than one weight to compare to so we can call the getCurrentWeightProgress and the getTotalWeightProgress functions, if there isn't then lets clear the state of the weightProgree and weightProgressTotal
+    if(weights.length > 1){
+      const sortedWeights = weights.sort(function compare(a, b) {
+        var dateA = new Date(a.measure_date);
+        var dateB = new Date(b.measure_date);
+        return dateB - dateA;
+      });
+
+      this.getCurrentWeightProgress(sortedWeights);
+      this.getTotalWeightProgress(sortedWeights);
+    }else{
+      this.setState({
+        weightProgress: "",
+        weightProgressTotal: ""
+      });
+    }
   }
 
   componentDidUpdate(prevProps){
