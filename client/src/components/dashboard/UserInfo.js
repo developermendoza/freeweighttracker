@@ -118,7 +118,7 @@ class UserInfo extends Component{
         <h2 style={{fontSize:"2.5rem"}}>Welcome <b style={{textTransform:"capitalize"}}>{ this.props.auth.user.name.split(" ")[0] }!</b></h2>
         <h4 style={{color: "grey"}}>Email</h4>
         <h4 style={{fontSize:"1.0rem"}}>{this.props.auth.user.email}</h4>
-        <p>You have submitted {this.state.submitNum} times today</p>
+        <p>You have submitted {this.state.submitNum} {this.state.submitNum > 1 ? "times": "time"} today</p>
         <p>{this.state.weightProgress}</p>
         <p>{this.state.weightProgressTotal}</p>
       </div>
