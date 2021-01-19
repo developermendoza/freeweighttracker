@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import  Hero  from "./Hero";
-import { Modal, Button } from 'react-bootstrap';
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 class Landing extends Component{

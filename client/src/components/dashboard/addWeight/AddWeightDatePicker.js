@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import DatePicker from 'react-date-picker';
+import React  from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 

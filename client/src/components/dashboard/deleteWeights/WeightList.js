@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AllWeights from "./DeleteWeights";
 import DeleteWeightsButton from "./DeleteWeightsButton";
 import { Container, Row, Col, ListGroup, ListGroupItem, Button, Spinner, Modal } from "react-bootstrap";
 import { getWeights, deleteWeight, loadingData, deleteAllWeights } from  "../../../actions/weightActions";

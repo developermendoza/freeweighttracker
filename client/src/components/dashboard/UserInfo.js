@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import { Row, Col } from "react-bootstrap";
 
 class UserInfo extends Component{
 
@@ -8,20 +9,26 @@ class UserInfo extends Component{
     weights : [],
     submitNum: 0,
     weightProgress: "",
-    weightProgressTotal: ""
+    weightProgressTotal: "",
+    memberDate: "",
+    gainWeight: false,
+    lostWeight: false
+  }
+
+  componentDidMount(){
+    this.setState({
+      memberDate: this.props.auth.user.date
+    })
   }
 
   getTodaySubmitTimes = (weights) => {
    let date = new Date();
     date = moment(date).format("MMDDYYYY");
-    let submitNum = [];
-        weights.map( weight => {
-     if(date === moment(weight.measure_date).format("MMDDYYYY")){
-      submitNum.push(weight.measure_date);
-     }
-    });
+
+    const todaysWeight = weights.filter( weight => date === moment(weight.measure_date).format("MMDDYYYY"));
+
     this.setState({
-      submitNum:submitNum.length
+      submitNum:todaysWeight.length
     })
   }
 
@@ -30,9 +37,6 @@ class UserInfo extends Component{
   const currentSubmitWeight = sortedWeights[0];
   // gets the second to current date  user object
   const secondSubmitWeight = sortedWeights[1];
-
-  // debugger;
-
   
     // compares the two weights of the two values and then we set that to weightProgress state
   if(currentSubmitWeight.weight < secondSubmitWeight.weight){
@@ -45,7 +49,7 @@ class UserInfo extends Component{
       weightProgress: `You have gained ${currentSubmitWeight.weight - secondSubmitWeight.weight} lbs since ${moment(secondSubmitWeight.measure_date).format("MMMM DD YYYY")}`
     })
 
-  }else if(currentSubmitWeight.weight == secondSubmitWeight.weight){
+  }else if(currentSubmitWeight.weight === secondSubmitWeight.weight){
     this.setState({
       weightProgress: `Your weight has remain the same ${currentSubmitWeight.weight} lbs since ${moment(secondSubmitWeight.measure_date).format("MMMM DD YYYY")}`
     })
@@ -62,19 +66,21 @@ class UserInfo extends Component{
 
   getTotalWeightProgress = (sortedWeights) => {
 
+
     if(sortedWeights[0].weight < sortedWeights[sortedWeights.length - 1].weight){
       this.setState({
-        weightProgressTotal: `You have lost a total of ${sortedWeights[sortedWeights.length - 1].weight - sortedWeights[0].weight} lbs since ${moment(sortedWeights[sortedWeights.length - 1].measure_date).format("MMMM DD YYYY")}`
+        weightProgressTotal: sortedWeights[sortedWeights.length - 1].weight - sortedWeights[0].weight,
+        lostWeight: true
       })
     }else if(sortedWeights[0].weight > sortedWeights[sortedWeights.length - 1].weight){
-  
       this.setState({
-        weightProgressTotal: `You have gained a total of ${sortedWeights[0].weight - sortedWeights[sortedWeights.length - 1].weight} lbs since ${moment(sortedWeights[sortedWeights.length - 1].measure_date).format("MMMM DD YYYY")}`
-      })
+        weightProgressTotal: sortedWeights[0].weight - sortedWeights[sortedWeights.length - 1].weight,
+        gainWeight: true
+      });
   
-    }else if(sortedWeights[0].weight == sortedWeights[sortedWeights.length - 1].weight){
+    }else if(sortedWeights[0].weight === sortedWeights[sortedWeights.length - 1].weight){
       this.setState({
-        weightProgressTotal: `Your weight has remain the same ${sortedWeights[0].weight} lbs since ${moment(sortedWeights[sortedWeights.length - 1].measure_date).format("MMMM DD YYYY")}`
+        weightProgressTotal: sortedWeights[0].weight 
       })
     }else{
       this.setState({
@@ -116,11 +122,42 @@ class UserInfo extends Component{
     return (
       <div>
         <h2 style={{fontSize:"2.5rem"}}>Welcome <b style={{textTransform:"capitalize"}}>{ this.props.auth.user.name.split(" ")[0] }!</b></h2>
-        <h4 style={{color: "grey"}}>Email</h4>
-        <h4 style={{fontSize:"1.0rem"}}>{this.props.auth.user.email}</h4>
-        <p>You have submitted {this.state.submitNum} {this.state.submitNum > 1 ? "times": "time"} today</p>
-        <p>{this.state.weightProgress}</p>
-        <p>{this.state.weightProgressTotal}</p>
+        <Row className="user-info-section-row">
+          <Col xs="12" md="7">
+            <div>
+              <h4 style={{color: "grey"}}>Email</h4>
+              <h4 style={{fontSize:"1.0rem"}}>{this.props.auth.user.email}</h4>
+            </div>
+          </Col>
+          <Col xs="12" md="4" className="user-info-section member" style={{background:"#293643"}}>
+              <p>MEMBER SINCE</p>
+              <Row>
+                <Col xs="6" md="12">
+                  {moment(this.state.memberDate).format("MMMM").toUpperCase()}
+                </Col>
+                <Col xs="6" md="12">
+                  {moment(this.state.memberDate).format("DD/YYYY")}
+                </Col>
+              </Row>
+          </Col>
+        </Row>
+        {this.state.weightProgressTotal !== "" ? <Row className="user-info-section-row">
+          <Col xs="12" md="4" className="user-info-section weight-progress">
+              {this.state.gainWeight && <p>WEIGHT GAINT TOTAL</p>}
+              {this.state.lostWeight && <p>WEIGHT LOSS TOTAL</p>}
+                <p className="weight-progress-weight">{this.state.weightProgressTotal}<span> LBS</span></p>
+                <p>Since {moment(this.state.memberDate).format("MMMM DD YYYY")}</p>
+          </Col>
+          <Col xs="12" md="4" className="user-info-section">
+            <div>
+              <p>TODAYS SUBMISSION</p>
+              <div>
+                <p className="weight-submission">{this.state.submitNum}</p>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        :""}
       </div>
     )
   }
