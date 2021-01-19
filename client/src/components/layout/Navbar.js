@@ -3,6 +3,7 @@ import {Navbar as NavigationBar, Nav } from 'react-bootstrap'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from  "../../actions/authActions"
+import { Link } from  "react-router-dom"
 
 class Navbar extends Component{
 
@@ -14,12 +15,13 @@ class Navbar extends Component{
   render(){
     return (
       <NavigationBar fixed="top" bg="dark" variant="dark" style={{display:"flex", justifyContent:"space-between"}}>
-        <NavigationBar.Brand href="/">{' '}
+        <Link to="/">{' '}
           Free Weight Tracker
-        </NavigationBar.Brand>
+        </Link>
         <div style={{display: "flex", alignItems:"center"}}>
         {this.props.auth.isAuthenticated ? <Nav.Link onClick={this.onLogoutClick}>Logout</Nav.Link> : <>
-        <Nav.Link href="/login">Login</Nav.Link><span style={{color:"white"}}>|</span><Nav.Link href="/Register">Sign up</Nav.Link>
+        <Link to="/login">Login</Link>
+        <span style={{color:"white"}}>|</span><Link to="/register">Sign up</Link>
         </> }
         </div>
       </NavigationBar>

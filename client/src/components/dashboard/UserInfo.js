@@ -143,7 +143,7 @@ class UserInfo extends Component{
         </Row>
         {this.state.weightProgressTotal !== "" ? <Row className="user-info-section-row">
           <Col xs="12" md="4" className="user-info-section weight-progress">
-              {this.state.gainWeight && <p>WEIGHT GAINT TOTAL</p>}
+              {this.state.gainWeight && <p>WEIGHT GAIN TOTAL</p>}
               {this.state.lostWeight && <p>WEIGHT LOSS TOTAL</p>}
                 <p className="weight-progress-weight">{this.state.weightProgressTotal}<span> LBS</span></p>
                 <p>Since {moment(this.state.memberDate).format("MMMM DD YYYY")}</p>

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 class Login extends Component {
 
   constructor(){
@@ -83,7 +84,7 @@ class Login extends Component {
             {errors.password || errors.passwordincorrect ? <Form.Text style={{color:"red"}}>{errors.password}{errors.passwordincorrect}</Form.Text> : <Form.Text className="text-muted">Required
           </Form.Text> }
         </Form.Group>
-        <p>Not a member? <a href="/register">Click here</a></p>
+        <p>Not a member? <Link to="/register">Click here</Link></p>
         <Button variant="primary" type="submit">
           Submit
         </Button>

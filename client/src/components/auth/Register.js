@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
+import { Link } from  "react-router-dom";
 
 class Register extends Component{
 
@@ -122,7 +123,7 @@ class Register extends Component{
           {errors.password2 ? <Form.Text style={{color:"red"}}>{errors.password2}</Form.Text> : <Form.Text className="text-muted">Required
           </Form.Text> }
         </Form.Group>
-        <p>Already a member? <a href="/login">Login here</a></p>
+        <p>Already a member? <Link to="/login">Login here</Link></p>
         <Button variant="primary" type="submit">
           Submit
         </Button>
