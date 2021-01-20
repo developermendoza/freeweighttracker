@@ -4,6 +4,54 @@
 
 }
 
+.navbar-auth-links{
+  font-size:12px;
+}
+
+h1 {
+  margin-top: 80px!important;
+  font-size: 3rem!important;
+    text-align: center;
+}
+
+h2{
+  font-size: 1rem!important;;
+  text-align: center!important;
+}
+
+a.logo{
+  font-size: 14px!important;
+}
+.navbar-auth-links a{
+  color: grey
+}
+.navbar-auth-links a:hover{
+  color: lightskyblue;
+  text-decoration: none;
+}
+
+a.logo{
+  color: lightskyblue;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+a.logo:hover{
+  color: white;
+  text-decoration: none;
+}
+
+a.hero-link {
+  color: lightskyblue;
+}
+
+a.hero-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
 /* Track */
 .allweights-scrollbar::-webkit-scrollbar-track {
   cursor: pointer;
@@ -135,7 +183,24 @@ background: linear-gradient(90deg, rgba(86,111,139,1) 0%, rgba(0,0,0,1) 100%);
   font-size: 40px;
 }
 
+
+
+
 @media only screen and (min-width: 768px) {
+
+  h1 {
+    font-size: 6rem!important;
+    text-align: left!important;
+  }
+
+  h2 {
+    font-size: 2rem!important;
+    text-align: left!important;
+  }
+
+  .navbar-auth-links{
+    font-size:14px;
+  }
   .user-info-section .row .col-6:first-child{
     text-align: center;
   }

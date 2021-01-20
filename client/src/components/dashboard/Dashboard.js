@@ -9,7 +9,7 @@ import WeightProgress from "./WeightProgress";
 const Dashboard = () => {
   
   return (
-    <Container style={{marginTop:"64px", marginBottom: "20px"}}>
+    <Container style={{marginTop:"104px", marginBottom: "20px"}}>
       <Row style={{justifyContent: "center"}}>
         <Col sm={12} md={6} className="dashboard_section"><UserInfo /></Col>
         <Col sm={12} md={6} className="dashboard_section"><AddWeight/></Col>
