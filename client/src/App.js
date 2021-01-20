@@ -5,6 +5,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import NotFoundPage from "./components/404/NotFoundPage";
 
 
 
@@ -13,6 +14,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { withRouter } from "react-router";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -39,22 +41,25 @@ if(localStorage.jwtToken){
   }
 }
 
-function App() {
+function App (){
+  // console.log("props: ", props);
   return (
     <Provider store={store}>
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/" component={Landing}/>
-          <Route exact path="/Login" component={Login}/>
-          <Route exact path="/Register" component={Register}/>
           <Switch>
+            <Route exact path="/" component={Landing}/>
+            <Route exact path="/Login" component={Login}/>
+            <Route exact path="/Register" component={Register}/>
             <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+            <Route path="*" component={NotFoundPage} /> 
           </Switch>
+          {/* */}
         </div>
       </Router>
     </Provider>
   );
 }
 
-export default App;
+export default  App;
