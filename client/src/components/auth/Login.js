@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
+import Footer from "../layout/Footer";
 class Login extends Component {
 
   constructor(){
@@ -52,7 +53,9 @@ class Login extends Component {
   render(){
     const { errors } = this.state
     return (
-      <Container style={{display:"flex", justifyContent:"center", marginTop:"100px"}}>
+      <>
+      <div className="form-container">
+      <Container style={{display:"flex", justifyContent:"center"}}>
       <Jumbotron>
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="email" style={{minWidth:"300px"}}>
@@ -91,6 +94,9 @@ class Login extends Component {
         </Form>
         </Jumbotron>
       </Container>
+      </div>
+        <Footer />
+        </>
         )
   }
 }

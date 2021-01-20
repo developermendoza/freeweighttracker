@@ -150,6 +150,14 @@ background: linear-gradient(90deg, rgba(86,111,139,1) 0%, rgba(0,0,0,1) 100%);
     color: #D0D0D0;
 }
 
+.form-container {
+  background: #414F5E;
+  display: flex;
+  justify-content: center;
+  padding-top: 140px;
+  padding-bottom: 60px;
+}
+
 .landing-services-row{
   justify-content: space-evenly;
 }
