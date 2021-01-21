@@ -9,5 +9,8 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLEAR_WEIGHT_DATA = "CLEAR_WEIGHT_DATA";
 export const GET_WEIGHTS = "GET_WEIGHTS";
 export const DELETE_WEIGHT = "DELETE_WEIGHT";
+<<<<<<< HEAD
 export const DELETE_ALL_WEIGHTS = "DELETE_ALL_WEIGHTS";
+=======
+>>>>>>> DeleteWeight
 

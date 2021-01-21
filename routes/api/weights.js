@@ -39,11 +39,14 @@ router.delete("/delete-weight", (req, res) => {
   then( data => res.json(data)).catch(err =>console.log(err))
  
 })
+<<<<<<< HEAD
 
 router.delete("/delete-all-weights", (req, res) => {
   Weight.deleteMany({user_id: req.body.id}).
   then( data => res.json(data)).catch(err =>console.log(err)).catch(err =>console.log(err))
 })
 
+=======
+>>>>>>> DeleteWeight
 
 module.exports = router
