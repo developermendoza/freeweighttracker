@@ -24,7 +24,6 @@ const newWeight = new Weight({
   measure_date: req.body.date,
 });
 
-// console.log("newWeight: ", newWeight)
 
 newWeight.save().then(data => res.json(data)).catch(err => console.log(err));
 
@@ -37,16 +36,12 @@ router.get("/get-weights", (req, res) => {
 router.delete("/delete-weight", (req, res) => {
   Weight.deleteOne({_id: req.body.id}).
   then( data => res.json(data)).catch(err =>console.log(err))
- 
 })
-<<<<<<< HEAD
+
 
 router.delete("/delete-all-weights", (req, res) => {
   Weight.deleteMany({user_id: req.body.id}).
   then( data => res.json(data)).catch(err =>console.log(err)).catch(err =>console.log(err))
-})
-
-=======
->>>>>>> DeleteWeight
+});
 
 module.exports = router

@@ -14,7 +14,6 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { withRouter } from "react-router";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";

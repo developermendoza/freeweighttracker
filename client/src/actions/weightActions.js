@@ -7,15 +7,9 @@ import {
   LOADING,
   CLEAR_ERRORS,
   STOP_LOADING,
-<<<<<<< HEAD
   GET_WEIGHTS,
   DELETE_WEIGHT,
   DELETE_ALL_WEIGHTS
-=======
-  CLEAR_WEIGHT_DATA,
-  GET_WEIGHTS,
-  DELETE_WEIGHT
->>>>>>> DeleteWeight
 } from "./types";
 
 export const getWeights = (id) => dispatch => {
@@ -103,22 +97,6 @@ export const deleteAllWeights = (id) => dispatch => {
         payload: err.response.data
       })
     })
-}
-
-export const deleteWeight = (id) => dispatch => {
-console.log("deleteWeight: ", id)
-  axios.delete("/api/weights/delete-weight",{ data: { id } })
-  .then( res => {
-    dispatch({
-      type: DELETE_WEIGHT,
-      payload: id
-    });
-  }).catch( err => {
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    })
-  })
 }
 
 

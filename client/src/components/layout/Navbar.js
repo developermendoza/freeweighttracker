@@ -21,7 +21,7 @@ class Navbar extends Component{
         {this.props.auth.isAuthenticated ? 
           <Dropdown>
             <Dropdown.Toggle id="dropdown-menu-align-left"  style={{background:"transparent", border:"none"}}>
-            <i class="far fa-user-circle"></i>
+            <i className="far fa-user-circle"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu style={{left: "-104px"}}>
               <Dropdown.Item onClick={this.onLogoutClick}>Logout</Dropdown.Item>

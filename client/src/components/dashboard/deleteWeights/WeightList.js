@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
+
 import DeleteWeightsButton from "./DeleteWeightsButton";
 import { Container, Row, Col, ListGroup, ListGroupItem, Button, Spinner, Modal } from "react-bootstrap";
 import { getWeights, deleteWeight, loadingData, deleteAllWeights } from  "../../../actions/weightActions";
-=======
-import AllWeights from "./DeleteWeights";
-import DeleteAllWeights from "./DeleteWeightsButton";
-import { Container, Row, Col, ListGroup, ListGroupItem, Button } from "react-bootstrap";
-import { getWeights, deleteWeight } from  "../../../actions/weightActions";
->>>>>>> DeleteWeight
+
 import { connect } from "react-redux";
 import moment from "moment";
 
@@ -23,10 +18,7 @@ class WeightList extends Component {
 
   handleWeightDelete = (id, e) => {
     this.props.deleteWeight(id)
-<<<<<<< HEAD
-=======
-    // console.log("handleWeightDelete clicked", id);
->>>>>>> DeleteWeight
+
   }
 
   componentDidMount(){
@@ -70,7 +62,6 @@ class WeightList extends Component {
     }
   }
   render(){
-<<<<<<< HEAD
     return (
       <Container>
         <Row>
@@ -87,19 +78,7 @@ class WeightList extends Component {
             </ListGroup>
           </Col>
           <Col sm={12} md={4}><DeleteWeightsButton handleShow={this.handleShow} /></Col>
-=======
-    console.log("this.state.weights: ", this.state.weights)
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <ListGroup>
-            {this.state.weights.length > 0 && this.state.weights.map( (user, i) => 
-            <ListGroupItem key={i}><div style={{display:"flex", justifyContent:"space-between"}}><span>{user.weight} lbs</span><Button onClick={this.handleWeightDelete.bind(this, user._id)} variant="danger"><i className="far fa-trash-alt"></i></Button></div>
-            <p style={{fontSize:"12px"}}>{moment(user.measure_date).format('MMMM Do YYYY')}</p></ListGroupItem> )}
-            </ListGroup></Col>
-          <Col><DeleteAllWeights /></Col>
->>>>>>> DeleteWeight
+
         </Row>
         <Modal show={this.state.show} onHide={this.handleClose.bind(this, "no")}>
         <Modal.Header closeButton>
@@ -126,9 +105,7 @@ const mapStateToProps = state => ({
   errors: state.errors,
   weight: state.weight,
   loading: state.loading
-})
-<<<<<<< HEAD
+});
+
 export default connect(mapStateToProps,{ getWeights, deleteWeight, loadingData, deleteAllWeights })(WeightList);
-=======
-export default connect(mapStateToProps,{ getWeights, deleteWeight })(WeightList);
->>>>>>> DeleteWeight
+
