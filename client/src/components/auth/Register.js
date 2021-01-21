@@ -1,9 +1,11 @@
 import React, {Component} from "react";
-import { Jumbotron, Container, Form, Row, Button } from "react-bootstrap";
+import { Jumbotron, Container, Form, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
+import { Link } from  "react-router-dom";
+import Footer from "../layout/Footer";
 
 class Register extends Component{
 
@@ -54,7 +56,9 @@ class Register extends Component{
   render () {
     const { errors } = this.state
     return (
-      <Container style={{display:"flex", justifyContent:"center", marginTop:"100px"}}>
+      <>
+      <div className="form-container">
+      <Container style={{display:"flex", justifyContent:"center"}}>
       <Jumbotron>
       <Form onSubmit={this.onSubmit}>
       <Form.Group controlId="name" style={{minWidth:"300px"}}>
@@ -122,13 +126,16 @@ class Register extends Component{
           {errors.password2 ? <Form.Text style={{color:"red"}}>{errors.password2}</Form.Text> : <Form.Text className="text-muted">Required
           </Form.Text> }
         </Form.Group>
-        <p>Already a member? <a href="/login">Login here</a></p>
+        <p>Already a member? <Link to="/login">Login here</Link></p>
         <Button variant="primary" type="submit">
           Submit
         </Button>
         </Form>
         </Jumbotron>
       </Container>
+      </div>
+      <Footer />
+      </>
         )
   }
 

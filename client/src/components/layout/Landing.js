@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import  Hero  from "./Hero";
-import { Modal, Button } from 'react-bootstrap';
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import  LandingServices  from "../services/LandingServices";
+import Footer from "./Footer";
 
 class Landing extends Component{
   componentDidMount(){
@@ -14,6 +14,8 @@ class Landing extends Component{
     return (
       <>
       <Hero image="/images/hero.jpg" text="Free Weight Tracker" />
+      <LandingServices />
+      <Footer />
       </>
     )
   }

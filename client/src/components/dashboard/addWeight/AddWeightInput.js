@@ -13,16 +13,16 @@ class AddWeightInput extends Component{
       weight: "",
       userId: "",
       errors: {},
+      submitted: false,
       loading: false,
-      submitted: false
     }
   }
 
   componentDidUpdate(prevProps){
     if(prevProps.errors !== this.props.errors){
+
       this.setState({
         errors: this.props.errors,
-        loading: this.props.loading,
       })
     }
 
@@ -31,10 +31,9 @@ class AddWeightInput extends Component{
         loading: this.props.loading
       })
     }
-
-    if(prevProps.weight !== this.props.weight){
+    if(prevProps.user_measures.newWeight !== this.props.user_measures.newWeight){
       this.setState({
-        submitted: !!this.props.weight.weight
+        submitted: !!this.props.user_measures.newWeight,
       })
     }
   }
@@ -58,9 +57,11 @@ class AddWeightInput extends Component{
         weight: this.state.weight,
         date: this.props.date
       }
+
       this.props.loadingData()
     this.props.addWeight(newWeight);
   }
+
   render() {
     // this will close the success alert automatically 
     if(this.state.submitted){
@@ -69,29 +70,40 @@ class AddWeightInput extends Component{
         3000
       );
     }
+
+    
     return (
       <Form onSubmit={this.handleSubmit}>
     <Form.Row>
       <Col>
-        <Form.Label>Add New Weight</Form.Label>
+        <Form.Label style={{fontsize: "1.8rem",
+    color: "white",
+    fontFamily: "Roboto,sans-serif"}}>ADD NEW WEIGHT</Form.Label>
         <Form.Control 
         onChange={this.handleChange}
         value={this.state.weight}
         id="weight"
         type="number" placeholder="Add Weight" />
-        <span>{this.state.errors.msg && this.state.errors.msg}</span>
       </Col>
     </Form.Row>
-    <Form.Row>
-      <Button type="submit" disabled={this.state.loading}> {this.state.loading ?<> <Spinner
+    <Form.Row style={{justifyContent:"center"}}>
+    <div className="button-wrapper">
+      <Button className="button" type="submit" disabled={this.state.loading}> {this.state.loading ?<> <Spinner
       as="span"
       animation="grow"
       size="sm"
       role="status"
       aria-hidden="true"
     /> Loading...</>
-     : "ADD WEIGHT"}</Button>
+     : "ADD WEIGHT"}</Button></div>
     </Form.Row>
+    {this.state.errors.msg && this.state.errors.msg && <Form.Row>
+      <Alert variant="danger" onClose={ () => this.setState({errors: {}})} dismissible>
+        <p>
+       { this.state.errors.msg }
+        </p>
+      </Alert>
+    </Form.Row> }
     {this.state.submitted && 
       <Form.Row>
       <Alert variant="success" onClose={ () => this.setState({submitted: false}) }  dismissible>
@@ -99,9 +111,9 @@ class AddWeightInput extends Component{
           Weight Submitted
         </p>
       </Alert>
-    </Form.Row> 
+    </Form.Row>
     }
-
+    
   </Form>
     )
   }
@@ -112,8 +124,8 @@ const mapStateToProps = state => ({
   weight: state.weight,
   auth: state.auth,
   errors: state.errors,
-  loading: state.loading,
-  user_measures: state.user_measures
+  user_measures: state.user_measures,
+  loading: state.loading
 })
 
 export default connect(mapStateToProps,

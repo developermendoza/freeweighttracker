@@ -1,9 +1,12 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
-const DelteAllWeights = () => {
+const DeleteWeightsButton = ({handleShow}) => {
   return (
-    <div>DelteAllWeights</div>
+    <div className="button-wrapper">
+    <Button className="button" onClick={handleShow} variant="danger">DELETE ALL</Button>
+    </div>
   )
 }
 
-export default DelteAllWeights;
+export default DeleteWeightsButton;
