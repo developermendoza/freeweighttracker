@@ -16,7 +16,6 @@ export default function(state=initialState, action){
   switch(action.type){
     case SET_CURRENT_USER:
       return {
-        // isAuthenticated: !action.payload,
         isAuthenticated: !isEmpty(action.payload),
         user:action.payload,
       }

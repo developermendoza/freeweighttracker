@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000/",
+  "proxy": "https://6009f0a650375a2dbdf7b3da--freeweighttracker.netlify.app/",
   "eslintConfig": {
     "extends": [
       "react-app",
