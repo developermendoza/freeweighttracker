@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://freeweighttracker.herokuapp.com/",
+  "proxy": "https://freeweighttracker.herokuapp.com/server/",
   "eslintConfig": {
     "extends": [
       "react-app",
