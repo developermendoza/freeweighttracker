@@ -38,7 +38,6 @@ app.use("/api/weights", weights);
 
 // Serve static assets if in production
 if(process.env.NODE_ENV === "production"){
-  console.log("it is")
   //set static folder
   app.use(express.static('client/build'));
 
