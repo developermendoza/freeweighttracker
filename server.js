@@ -36,10 +36,9 @@ require("./config/passport")(passport);
 app.use("/api/users", users)
 app.use("/api/weights", weights);
 
-// app.get('/', (req, res) => { res.send('Hello from Express!')});
-
 // Serve static assets if in production
 if(process.env.NODE_ENV === "production"){
+  console.log("it is")
   //set static folder
   app.use(express.static('client/build'));
 
@@ -50,6 +49,7 @@ if(process.env.NODE_ENV === "production"){
 
 
   const port = process.env.PORT || 5000;
+
   app.listen(port, () => console.log(`Server is up and running on port ${port}`));
 
 
