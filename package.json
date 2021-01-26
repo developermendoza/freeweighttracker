@@ -1,0 +1,19 @@
+{
+  "name": "freeweighttracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developermendoza/freeweighttracker.git"
+  },
+  "author": "Jose Mendoza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developermendoza/freeweighttracker/issues"
+  },
+  "homepage": "https://github.com/developermendoza/freeweighttracker#readme"
+}
